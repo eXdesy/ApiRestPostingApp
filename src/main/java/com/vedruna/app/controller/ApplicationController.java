@@ -527,8 +527,8 @@ public class ApplicationController {
     @PostMapping("/publication/{publicationId}/comments/user/{userId}")
     public ResponseEntity<CommentDTO> addComment(@PathVariable(name = "publicationId") Long publicationId,
                                                  @PathVariable(name = "userId") Long userId,
-                                                 @RequestParam(value = "image", required = false) MultipartFile image,
-                                                 @RequestBody CommentDTO commentDTO) {
+                                                 @RequestParam(name = "image", required = false) MultipartFile image,
+                                                 @ModelAttribute(name = "text") CommentDTO commentDTO) {
         try {
             CommentDTO addedComment = commentService.addComment(userId, publicationId, commentDTO, image);
             return ResponseEntity.ok(addedComment);
